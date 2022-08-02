@@ -1,0 +1,4 @@
+ESP Board MAC Address:  24:62:AB:FC:EF:B0
+
+
+IP ESP: 192.168.50.31
