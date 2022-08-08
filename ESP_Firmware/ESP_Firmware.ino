@@ -1,4 +1,4 @@
-#include <WiFi.h>
+#include "libs.h"
 
 char msj[32];
 
@@ -10,7 +10,6 @@ WiFiServer wifiServer(80);
 void setup() {
  
   Serial.begin(115200);
- 
   delay(1000);
  
   WiFi.begin(ssid, password);
@@ -24,6 +23,7 @@ void setup() {
   Serial.println(WiFi.localIP());
  
   wifiServer.begin();
+  
 }
  
 void loop() {

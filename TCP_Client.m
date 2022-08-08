@@ -1,5 +1,11 @@
 t = tcpclient("192.168.50.31", 80);
 
+i = 1;
+
+while i == 1
+    
+end
+
 data = "Hola mundo";
 
 write(t,data)
