@@ -4,5 +4,6 @@
 #include <Arduino.h>
 #include <WiFi.h>
 
+void startWifi(const char* ssid, const char* password);
 
 #endif

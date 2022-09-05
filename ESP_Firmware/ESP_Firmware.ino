@@ -1,33 +1,41 @@
+// ==============================================
+// LIBRERIAS
+// ==============================================
 #include "libs.h"
 
+// ==============================================
+// VARIABLES
+// ==============================================
 char msj[32];
 
-const char* ssid = "Robotat";
-const char* password =  "iemtbmcit116";
+// SSID y contraseña del WiFi
+char* ssid = "Robotat";
+char* password =  "iemtbmcit116";
+int port = 80;
 
-WiFiServer wifiServer(80);
- 
-void setup() {
- 
+WiFiServer wifiServer(port);
+
+// ==============================================
+// PROTOTIPO DE FUNCIONES
+// ==============================================
+
+// ==============================================
+// SETUP
+// ==============================================
+void setup() { 
+  // Iniciar serial
   Serial.begin(115200);
-  delay(1000);
- 
-  WiFi.begin(ssid, password);
- 
-  while (WiFi.status() != WL_CONNECTED) {
-    delay(1000);
-    Serial.println("Connecting to WiFi..");
-  }
- 
-  Serial.println("Connected to the WiFi network");
-  Serial.println(WiFi.localIP());
- 
+  // Iniciar WiFi
+  startWifi(ssid, password);
+  // Iniciar Server
   wifiServer.begin();
-  
 }
- 
+
+// ==============================================
+// LOOP
+// ==============================================
 void loop() {
- 
+ // Crear conexion con clientes
   WiFiClient client = wifiServer.available();
  
   if (client) {
@@ -36,16 +44,19 @@ void loop() {
       int i = 0;
       
       while (client.available()>0) {
-        msj[i] = client.read();
-        
+        msj[i] = client.read(); 
         i+=1;
       }
-      client.write(msj); 
-      delay(10);
+      // Convertir mensaje a movimiento del dron
+      
     }
+  }
 
-    Serial.println(msj);
-    client.stop();
-    Serial.println("Client disconnected");
+  else{
+    Serial.println("Client unavailable");
   }
 }
+
+// ==============================================
+// FUNCIONES
+// ==============================================

@@ -1,16 +1,11 @@
-t = tcpclient("192.168.50.31", 80);
-
-i = 1;
-
-while i == 1
+try
+    robotat_disconnect(t)
+catch
     
 end
 
-data = "Hola mundo";
+t = robotat_connect("192.168.50.200");
 
-write(t,data)
-
-temp = read(t, 10, "String")
-
-clear t
-echotcpip("off")    
+while 1
+    robotat_get_pose(t, 2, 'eulzyx')
+end
